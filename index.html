@@ -19,7 +19,7 @@
       <p class="prompt">$ whoami</p>
       <h1>Константин Зайцев</h1>
       <p class="role">Junior DevOps · Системный администратор</p>
-      <p class="location">Нижний Новгород · удалёнка / гибрид</p>
+      <p class="location">Нижний Новгород · удалённая работа</p>
       <nav class="links">
         <a href="https://github.com/VZ52" target="_blank" rel="noopener">GitHub</a>
         <a href="https://t.me/VZport" target="_blank" rel="noopener">Telegram</a>
@@ -48,9 +48,10 @@
 <section id="projects" class="section">
   <div class="container">
     <h2><span class="hash">#</span> Проекты</h2>
+    <p class="projects-hint">Нажми на карточку — откроется подробное описание.</p>
     <div class="cards">
 
-      <a href="https://github.com/VZ52/Ubuntu-Zabbix" target="_blank" rel="noopener" class="card">
+      <button type="button" class="card" data-project="ubuntu-zabbix">
         <h3>Ubuntu-Zabbix</h3>
         <p class="card-desc">
           Стенд мониторинга Zabbix 7 в Docker Compose с Telegram-алертингом.
@@ -64,9 +65,9 @@
           <span>REST API</span>
           <span>Bash</span>
         </div>
-      </a>
+      </button>
 
-      <a href="https://github.com/VZ52/zabbix-ansible" target="_blank" rel="noopener" class="card">
+      <button type="button" class="card" data-project="zabbix-ansible">
         <h3>zabbix-ansible</h3>
         <p class="card-desc">
           Ansible-плейбуки, разворачивающие Zabbix-стек на чистую Ubuntu VM
@@ -79,9 +80,9 @@
           <span>Multipass</span>
           <span>IaC</span>
         </div>
-      </a>
+      </button>
 
-      <a href="https://github.com/VZ52/ad-logon-tracker" target="_blank" rel="noopener" class="card">
+      <button type="button" class="card" data-project="ad-logon-tracker">
         <h3>ad-logon-tracker</h3>
         <p class="card-desc">
           GPO logon-скрипты для отслеживания пользователей в Active Directory.
@@ -96,9 +97,9 @@
           <span>WMI / ADSI</span>
           <span>Windows Server</span>
         </div>
-      </a>
+      </button>
 
-      <a href="https://github.com/VZ52/portfolio" target="_blank" rel="noopener" class="card">
+      <button type="button" class="card" data-project="portfolio">
         <h3>portfolio</h3>
         <p class="card-desc">
           Этот сайт. Чистый HTML + CSS, 3D-фон через Vanta.js, авто-деплой на
@@ -110,7 +111,7 @@
           <span>GitHub Actions</span>
           <span>GitHub Pages</span>
         </div>
-      </a>
+      </button>
 
     </div>
   </div>
@@ -176,6 +177,20 @@
   </div>
 </footer>
 
+<!-- Модалка с подробным описанием проекта -->
+<div id="modal" class="modal-overlay" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <button class="modal-close" aria-label="Закрыть">×</button>
+    <h3 id="modal-title"></h3>
+    <p id="modal-desc"></p>
+    <div id="modal-features"></div>
+    <div id="modal-stack"></div>
+    <a id="modal-github" class="modal-github-btn" href="#" target="_blank" rel="noopener">
+      Открыть на GitHub →
+    </a>
+  </div>
+</div>
+
 <!-- Three.js + Vanta.js NET для 3D-анимированного фона -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
@@ -196,6 +211,104 @@
     spacing: 18.00,
     showDots: true
   });
+</script>
+
+<!-- Модалка проектов -->
+<script>
+  // Данные проектов — то, что появится в модалке при клике
+  const PROJECTS = {
+    'ubuntu-zabbix': {
+      title: 'Ubuntu-Zabbix',
+      desc: 'Полноценный production-ready стек мониторинга на Zabbix 7, разворачиваемый одной командой через Docker Compose. Pet-версия мониторинга, который я разворачивал на работе, с доведённым до конца Telegram-алертингом — на проде до него не дошли из-за бюджетного ограничения на прокси.',
+      features: [
+        'docker-compose.yml: 4 сервиса (PostgreSQL, Zabbix server, web на nginx+php, agent2), healthcheck, именованный том для данных БД',
+        'Переменные окружения через .env (gitignored), пароли никогда не попадают в репозиторий',
+        'Telegram-алертинг через встроенный webhook media type Zabbix',
+        'Bash-скрипт setup-telegram-action.sh — настройка action через Zabbix REST API, идемпотентный',
+        'README с архитектурной схемой и пошаговой инструкцией'
+      ],
+      stack: ['Docker', 'Docker Compose', 'Zabbix 7', 'PostgreSQL 15', 'nginx', 'Bash', 'REST API', 'Telegram Bot API'],
+      github: 'https://github.com/VZ52/Ubuntu-Zabbix'
+    },
+
+    'zabbix-ansible': {
+      title: 'zabbix-ansible',
+      desc: 'Ansible-плейбуки, которые разворачивают Zabbix-стек из проекта Ubuntu-Zabbix на чистую Ubuntu-машину. После одной команды получаем готовый мониторинг с Telegram-алертингом — никаких ручных шагов.',
+      features: [
+        'install-docker.yml: установка Docker через get.docker.com, добавление пользователя в группу docker, включение сервиса. Идемпотентно',
+        'deploy-zabbix.yml: apt + git clone + template (Jinja2) → .env + docker compose up + uri-проверка готовности веб-интерфейса с retries',
+        'group_vars: переменные группы хостов с .example-версией для безопасной публикации',
+        'inventory.ini + ansible.cfg: декларативная конфигурация подключения по SSH',
+        'Локальная Ubuntu VM поднимается через multipass для тестов'
+      ],
+      stack: ['Ansible', 'Jinja2', 'Multipass', 'cloud-init', 'Ubuntu 26.04', 'YAML'],
+      github: 'https://github.com/VZ52/zabbix-ansible'
+    },
+
+    'ad-logon-tracker': {
+      title: 'ad-logon-tracker',
+      desc: 'Реальная задача с работы: отслеживать, кто на каком ПК в какой клинике сейчас сидит. При входе пользователя в домен скрипт определяет площадку по IP, записывает её и имя пользователя в AD-атрибут description компьютера. Сисадмин в AD Users & Computers одним взглядом видит всю картину.',
+      features: [
+        'legacy/: 3 обезличенных VBS-скрипта из прода (CompName, writeCompDesc_logon, writeCompDesc_logoff)',
+        'v2/Write-AdComputerSite.ps1: рефакторинг на PowerShell',
+        'Убран глобальный On Error Resume Next, который глушил все ошибки',
+        'Маппинг подсетей вынесен во внешний CSV — добавление новой площадки больше не требует правки кода',
+        'Логирование в Windows Event Log (источник AD-LogonTracker)',
+        'Logon и Logoff объединены в один скрипт с параметром -Action'
+      ],
+      stack: ['PowerShell', 'VBS', 'Active Directory', 'GPO', 'WMI', 'ADSI', 'LDAP', 'Windows Server'],
+      github: 'https://github.com/VZ52/ad-logon-tracker'
+    },
+
+    'portfolio': {
+      title: 'portfolio',
+      desc: 'Этот сайт. Без сборщиков, без npm — чистый HTML, CSS и капля JS. Зато с настоящим CI/CD: каждый push в main автоматически деплоится на GitHub Pages через GitHub Actions примерно за 20 секунд.',
+      features: [
+        '.github/workflows/deploy.yml: workflow на actions/checkout + actions/configure-pages + actions/deploy-pages',
+        'Триггер: push в main + ручной запуск через workflow_dispatch',
+        '3D-анимированный фон через Vanta.js (Three.js под капотом)',
+        'GitHub contributions chart встроен с ghchart.rshah.org — обновляется автоматически',
+        'Полная адаптивность под мобильные'
+      ],
+      stack: ['HTML', 'CSS', 'JavaScript', 'Vanta.js', 'GitHub Actions', 'GitHub Pages'],
+      github: 'https://github.com/VZ52/portfolio'
+    }
+  };
+
+  const modal       = document.getElementById('modal');
+  const modalTitle  = document.getElementById('modal-title');
+  const modalDesc   = document.getElementById('modal-desc');
+  const modalFeats  = document.getElementById('modal-features');
+  const modalStack  = document.getElementById('modal-stack');
+  const modalGithub = document.getElementById('modal-github');
+  const modalClose  = modal.querySelector('.modal-close');
+
+  function openModal(slug) {
+    const p = PROJECTS[slug];
+    if (!p) return;
+    modalTitle.textContent = p.title;
+    modalDesc.textContent  = p.desc;
+    modalFeats.innerHTML   = '<h4>Что внутри</h4><ul>' +
+      p.features.map(f => '<li>' + f + '</li>').join('') + '</ul>';
+    modalStack.innerHTML   = '<h4>Стек</h4><div class="tags">' +
+      p.stack.map(s => '<span>' + s + '</span>').join('') + '</div>';
+    modalGithub.href = p.github;
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() {
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('.card[data-project]').forEach(card => {
+    card.addEventListener('click', () => openModal(card.dataset.project));
+  });
+  modalClose.addEventListener('click', closeModal);
+  modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
 </script>
 
 </body>

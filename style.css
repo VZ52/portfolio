@@ -26,14 +26,13 @@ body {
   overflow-x: hidden;
 }
 
-/* 3D-фон — фиксированный, под всем контентом */
+/* 3D-фон */
 #vanta-bg {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
   z-index: 0;
 }
 
-/* Поверх фона */
 header, section, footer {
   position: relative;
   z-index: 1;
@@ -145,7 +144,6 @@ a:hover { color: var(--green); text-decoration: underline; }
   margin-bottom: 16px;
 }
 
-/* Содержимое секций — полупрозрачные плашки, чтобы 3D-фон просвечивал */
 #about > .container,
 #skills > .container,
 #activity > .container {
@@ -156,25 +154,34 @@ a:hover { color: var(--green); text-decoration: underline; }
   border: 1px solid var(--border);
 }
 
-/* CARDS */
+/* CARDS (теперь это <button>) */
+.projects-hint {
+  color: var(--text-dim);
+  font-size: 13px;
+  font-family: var(--mono);
+  margin-bottom: 16px;
+}
 .cards {
   display: grid;
   gap: 16px;
 }
 .card {
   display: block;
+  width: 100%;
+  text-align: left;
   background: rgba(22, 27, 34, 0.85);
   backdrop-filter: blur(10px);
   border: 1px solid var(--border);
   border-radius: 10px;
   padding: 24px;
   color: var(--text);
+  font: inherit;
+  cursor: pointer;
   transition: all 0.25s;
 }
 .card:hover {
   border-color: var(--accent);
   background: rgba(22, 27, 34, 0.95);
-  text-decoration: none;
   transform: translateY(-3px);
   box-shadow: 0 8px 30px rgba(88, 166, 255, 0.15);
 }
@@ -232,7 +239,7 @@ a:hover { color: var(--green); text-decoration: underline; }
 }
 .chart-wrap {
   overflow-x: auto;
-  margin-bottom: 24px;
+  margin-bottom: 0;
   padding: 16px;
   background: rgba(13, 17, 23, 0.5);
   border-radius: 8px;
@@ -244,16 +251,6 @@ a:hover { color: var(--green); text-decoration: underline; }
   min-width: 600px;
   height: auto;
 }
-.stats-wrap {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-}
-.stats-card {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-}
 
 /* FOOTER */
 .footer {
@@ -264,6 +261,115 @@ a:hover { color: var(--green); text-decoration: underline; }
   text-align: center;
 }
 .footer p { margin-bottom: 4px; }
+
+/* МОДАЛКА */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(6px);
+  z-index: 100;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  animation: fadeIn 0.2s ease-out;
+}
+.modal-overlay.open { display: flex; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.modal {
+  background: rgba(22, 27, 34, 0.98);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 32px;
+  max-width: 700px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  animation: slideUp 0.25s ease-out;
+}
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.modal-close {
+  position: absolute;
+  top: 12px; right: 16px;
+  background: transparent;
+  border: none;
+  color: var(--text-dim);
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+.modal-close:hover {
+  color: var(--text);
+  background: rgba(255,255,255,0.05);
+}
+
+.modal h3 {
+  font-family: var(--mono);
+  font-size: 24px;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+.modal > p {
+  color: var(--text);
+  margin-bottom: 20px;
+}
+.modal h4 {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--green);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 20px 0 10px;
+}
+.modal ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.modal ul li {
+  color: var(--text-dim);
+  font-size: 14px;
+  padding: 6px 0 6px 18px;
+  position: relative;
+  line-height: 1.5;
+}
+.modal ul li::before {
+  content: '▸';
+  color: var(--green);
+  position: absolute;
+  left: 0;
+  top: 6px;
+}
+
+.modal-github-btn {
+  display: inline-block;
+  margin-top: 24px;
+  padding: 10px 20px;
+  background: var(--accent);
+  color: var(--bg);
+  font-family: var(--mono);
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+.modal-github-btn:hover {
+  background: var(--green);
+  color: var(--bg);
+  text-decoration: none;
+  transform: translateY(-1px);
+}
 
 /* MOBILE */
 @media (max-width: 700px) {
@@ -279,8 +385,14 @@ a:hover { color: var(--green); text-decoration: underline; }
   .hero .role { font-size: 18px; }
   .hero .links { justify-content: center; }
   .section { padding: 50px 0; }
-  .stats-wrap { grid-template-columns: 1fr; }
   #about > .container,
-  #skills > .container,
-  #activity > .container { padding: 20px; }
+  #skills > .container { padding: 20px; }
+
+  /* GitHub-активность скрыта на мобильных — граф слишком широкий и нечитаемый */
+  #activity { display: none; }
+
+  /* Модалка на мобильном */
+  .modal { padding: 24px 20px; }
+  .modal h3 { font-size: 20px; }
+  .modal-close { top: 8px; right: 12px; font-size: 24px; }
 }
