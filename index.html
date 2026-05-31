@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Константин Зайцев — Junior DevOps</title>
+  <meta name="description" content="Junior DevOps Engineer. Docker, Ansible, Zabbix, Linux." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- 3D-фон, рендерится через Vanta.js -->
+<div id="vanta-bg"></div>
+
+<header class="hero">
+  <div class="container hero-grid">
+    <img src="profile.jpg" alt="Константин Зайцев" class="avatar" />
+    <div class="hero-text">
+      <p class="prompt">$ whoami</p>
+      <h1>Константин Зайцев</h1>
+      <p class="role">Junior DevOps · Системный администратор</p>
+      <p class="location">Нижний Новгород · удалёнка / гибрид</p>
+      <nav class="links">
+        <a href="https://github.com/VZ52" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://t.me/VZport" target="_blank" rel="noopener">Telegram</a>
+        <a href="mailto:zkos3572@gmail.com">Email</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<section id="about" class="section">
+  <div class="container">
+    <h2><span class="hash">#</span> О себе</h2>
+    <p>
+      Системный администратор в сети медицинских клиник «Тонус». Занимаюсь
+      Windows-инфраструктурой, Active Directory, развернул и поддерживаю
+      Zabbix-мониторинг, настраиваю Mikrotik, пишу автоматизацию на Python.
+    </p>
+    <p>
+      Перехожу в DevOps. Освоил Docker, Docker Compose, Ansible — собрал
+      pet-проекты от и до. Сейчас параллельно работе изучаю CI/CD
+      и cloud-инструменты.
+    </p>
+  </div>
+</section>
+
+<section id="projects" class="section">
+  <div class="container">
+    <h2><span class="hash">#</span> Проекты</h2>
+    <div class="cards">
+
+      <a href="https://github.com/VZ52/Ubuntu-Zabbix" target="_blank" rel="noopener" class="card">
+        <h3>Ubuntu-Zabbix</h3>
+        <p class="card-desc">
+          Стенд мониторинга Zabbix 7 в Docker Compose с Telegram-алертингом.
+          Автоматизация настройки через Zabbix REST API.
+        </p>
+        <div class="tags">
+          <span>Docker</span>
+          <span>Docker Compose</span>
+          <span>Zabbix 7</span>
+          <span>PostgreSQL</span>
+          <span>REST API</span>
+          <span>Bash</span>
+        </div>
+      </a>
+
+      <a href="https://github.com/VZ52/zabbix-ansible" target="_blank" rel="noopener" class="card">
+        <h3>zabbix-ansible</h3>
+        <p class="card-desc">
+          Ansible-плейбуки, разворачивающие Zabbix-стек на чистую Ubuntu VM
+          одной командой. Идемпотентные, с Jinja2-шаблонами и group_vars.
+        </p>
+        <div class="tags">
+          <span>Ansible</span>
+          <span>Jinja2</span>
+          <span>Ubuntu</span>
+          <span>Multipass</span>
+          <span>IaC</span>
+        </div>
+      </a>
+
+      <a href="https://github.com/VZ52/portfolio" target="_blank" rel="noopener" class="card">
+        <h3>portfolio</h3>
+        <p class="card-desc">
+          Этот сайт. Чистый HTML + CSS, 3D-фон через Vanta.js, авто-деплой на
+          GitHub Pages через GitHub Actions при каждом push в main.
+        </p>
+        <div class="tags">
+          <span>HTML/CSS</span>
+          <span>Vanta.js</span>
+          <span>GitHub Actions</span>
+          <span>GitHub Pages</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<section id="skills" class="section">
+  <div class="container">
+    <h2><span class="hash">#</span> Навыки</h2>
+    <div class="skills">
+      <div class="skill-group">
+        <h4>Linux / администрирование</h4>
+        <p>Ubuntu Server, Bash, systemd, SSH, networking (Mikrotik / Winbox)</p>
+      </div>
+      <div class="skill-group">
+        <h4>Контейнеризация</h4>
+        <p>Docker, Docker Compose, образы, volumes, networks, healthchecks</p>
+      </div>
+      <div class="skill-group">
+        <h4>Infrastructure as Code</h4>
+        <p>Ansible (playbooks, modules, group_vars, Jinja2), cloud-init</p>
+      </div>
+      <div class="skill-group">
+        <h4>CI/CD</h4>
+        <p>GitHub Actions, Git (branching, PR-flow)</p>
+      </div>
+      <div class="skill-group">
+        <h4>Мониторинг</h4>
+        <p>Zabbix 7 (server, agent, web, media types), алертинг в Telegram</p>
+      </div>
+      <div class="skill-group">
+        <h4>Языки и API</h4>
+        <p>Python, Bash, REST API (curl, JSON), Telegram Bot API</p>
+      </div>
+      <div class="skill-group">
+        <h4>Windows-инфраструктура</h4>
+        <p>Active Directory, Windows Server, доменные политики, Python для AD</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="activity" class="section">
+  <div class="container">
+    <h2><span class="hash">#</span> GitHub-активность</h2>
+    <p class="activity-sub">
+      Контрибьюшены за последний год — каждый зелёный квадрат это коммит.
+      <a href="https://github.com/VZ52" target="_blank" rel="noopener">→ полный профиль на GitHub</a>
+    </p>
+    <div class="chart-wrap">
+      <img
+        src="https://ghchart.rshah.org/3fb950/VZ52"
+        alt="GitHub contributions VZ52"
+        class="contrib-chart"
+      />
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <p>Чистый HTML + CSS · 3D-фон на Vanta.js · авто-деплой через GitHub Actions</p>
+    <p>2026 · <a href="https://github.com/VZ52/portfolio" target="_blank" rel="noopener">исходники</a></p>
+  </div>
+</footer>
+
+<!-- Three.js + Vanta.js NET для 3D-анимированного фона -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+<script>
+  VANTA.NET({
+    el: "#vanta-bg",
+    mouseControls: true,
+    touchControls: true,
+    gyroControls: false,
+    minHeight: 200.00,
+    minWidth: 200.00,
+    scale: 1.00,
+    scaleMobile: 1.00,
+    color: 0x3fb950,
+    backgroundColor: 0x0d1117,
+    points: 10.00,
+    maxDistance: 22.00,
+    spacing: 18.00,
+    showDots: true
+  });
+</script>
+
+</body>
+</html>
