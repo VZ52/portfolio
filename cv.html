@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Резюме · Зайцев Константин — Junior DevOps</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #1a1a1a;
+      --text-dim: #555;
+      --accent: #0969da;
+      --green: #1a7f37;
+      --border: #d0d7de;
+      --bg-soft: #f6f8fa;
+      --mono: ui-monospace, 'SF Mono', Menlo, Monaco, monospace;
+      --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 14px;
+      line-height: 1.55;
+      padding: 32px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .actions {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 24px;
+      padding: 12px;
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+    .actions button, .actions a {
+      padding: 8px 16px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: white;
+      color: var(--text);
+      font: inherit;
+      font-size: 13px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .actions button.primary {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+      font-weight: 600;
+    }
+    .actions button:hover, .actions a:hover { opacity: 0.9; }
+
+    header.cv-header {
+      border-bottom: 2px solid var(--text);
+      padding-bottom: 16px;
+      margin-bottom: 24px;
+    }
+    header.cv-header h1 {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: 4px;
+    }
+    header.cv-header .role {
+      font-size: 16px;
+      color: var(--text-dim);
+      margin-bottom: 8px;
+    }
+    header.cv-header .contacts {
+      font-size: 13px;
+      color: var(--text-dim);
+      font-family: var(--mono);
+    }
+    header.cv-header .contacts a { color: var(--accent); text-decoration: none; }
+    header.cv-header .contacts a:hover { text-decoration: underline; }
+    header.cv-header .contacts span { margin: 0 8px; color: var(--border); }
+
+    h2.section-title {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--green);
+      margin: 24px 0 10px;
+      padding-bottom: 4px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .summary { margin-bottom: 8px; }
+    .summary p { margin-bottom: 8px; }
+
+    .exp-block { margin-bottom: 14px; }
+    .exp-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 4px;
+    }
+    .exp-head .title { font-weight: 700; font-size: 15px; }
+    .exp-head .period { font-size: 12px; color: var(--text-dim); font-family: var(--mono); }
+    .exp-meta { font-size: 13px; color: var(--text-dim); margin-bottom: 6px; }
+    .exp-block ul { padding-left: 18px; }
+    .exp-block li { margin-bottom: 3px; font-size: 13px; }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 6px 16px;
+    }
+    .skills-grid dt {
+      font-weight: 600;
+      font-size: 13px;
+      color: var(--text-dim);
+    }
+    .skills-grid dd { font-size: 13px; }
+
+    .projects li { margin-bottom: 10px; font-size: 13px; }
+    .projects li strong { color: var(--accent); }
+    .projects li a { color: var(--accent); text-decoration: none; }
+    .projects li a:hover { text-decoration: underline; }
+    .projects li .stack {
+      display: block;
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--text-dim);
+      margin-top: 2px;
+    }
+
+    @media print {
+      body { padding: 0; font-size: 12px; }
+      .actions { display: none; }
+      header.cv-header h1 { font-size: 22px; }
+      h2.section-title { margin-top: 14px; font-size: 11px; }
+      a { color: var(--text) !important; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="actions">
+  <button class="primary" onclick="window.print()">⬇ Скачать PDF</button>
+  <a href="index.html">← Назад на сайт</a>
+</div>
+
+<header class="cv-header">
+  <h1>Зайцев Константин</h1>
+  <p class="role">Junior DevOps Engineer · Системный администратор</p>
+  <p class="contacts">
+    Нижний Новгород · удалённая работа
+    <span>·</span>
+    <a href="mailto:zkos3572@gmail.com">zkos3572@gmail.com</a>
+    <span>·</span>
+    <a href="https://t.me/VZport">@VZport</a>
+    <span>·</span>
+    <a href="https://github.com/VZ52">github.com/VZ52</a>
+    <span>·</span>
+    <a href="https://vz52.github.io/portfolio/">vz52.github.io/portfolio</a>
+  </p>
+</header>
+
+<section class="summary">
+  <h2 class="section-title">О себе</h2>
+  <p>
+    Системный администратор с фокусом на переход в DevOps. Год работы
+    в production-инфраструктуре сети медицинских клиник: 33 площадки,
+    ~900 рабочих станций, ~1500 доменных пользователей.
+  </p>
+  <p>
+    Параллельно изучаю и применяю DevOps-стек: Docker, Docker Compose,
+    Ansible, GitHub Actions. Все pet-проекты выложены на GitHub —
+    от стека мониторинга Zabbix с Telegram-алертингом в Docker Compose
+    до Ansible-плейбуков, разворачивающих этот стек на чистой Ubuntu VM
+    одной командой.
+  </p>
+  <p>
+    Работаю и с Linux (Ubuntu Server, bash), и с Windows-инфраструктурой
+    (AD, GPO, PowerShell). Пишу автоматизацию на Python и Bash. Умею читать
+    и улучшать legacy-код.
+  </p>
+</section>
+
+<section>
+  <h2 class="section-title">Опыт работы</h2>
+  <div class="exp-block">
+    <div class="exp-head">
+      <span class="title">Помощник системного администратора · Сеть медицинских клиник «Тонус»</span>
+      <span class="period">июль 2025 — наст. время</span>
+    </div>
+    <p class="exp-meta">Нижний Новгород · 33 площадки, ~900 ПК, ~1500 доменных пользователей</p>
+    <ul>
+      <li><b>Active Directory:</b> управление учётными записями и группами, настройка GPO, делегирование прав, logon/logoff-скрипты для тегирования ПК по площадкам.</li>
+      <li><b>Windows-инфраструктура:</b> поддержка Windows 10/11, удалённое администрирование, развёртывание новых рабочих мест в открывающихся клиниках.</li>
+      <li><b>Сетевое оборудование Mikrotik:</b> настройка через Winbox, гостевой Wi-Fi во всех клиниках, VLAN, маршрутизация.</li>
+      <li><b>Мониторинг:</b> развернул и поддерживаю Zabbix-сервер на Ubuntu; в pet-проекте довёл до конца Telegram-алертинг через webhook media type.</li>
+      <li><b>Автоматизация:</b> Python для рутинных операций в AD; рефакторинг legacy VBS-скриптов на PowerShell с выносом конфигурации во внешние файлы и логированием в Event Log.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2 class="section-title">Pet-проекты</h2>
+  <ul class="projects">
+    <li>
+      <strong><a href="https://github.com/VZ52/Ubuntu-Zabbix">Ubuntu-Zabbix</a></strong> —
+      стенд мониторинга Zabbix 7 в Docker Compose с Telegram-алертингом и автоматизацией настройки через Zabbix REST API.
+      <span class="stack">Docker · Docker Compose · Zabbix 7 · PostgreSQL · Bash · REST API</span>
+    </li>
+    <li>
+      <strong><a href="https://github.com/VZ52/zabbix-ansible">zabbix-ansible</a></strong> —
+      Ansible-плейбуки для развёртывания стека выше на чистую Ubuntu VM одной командой. Идемпотентные, с Jinja2-шаблонами и group_vars.
+      <span class="stack">Ansible · Jinja2 · Multipass · cloud-init · YAML</span>
+    </li>
+    <li>
+      <strong><a href="https://github.com/VZ52/ad-logon-tracker">ad-logon-tracker</a></strong> —
+      legacy VBS-скрипты для отслеживания логонов в Active Directory + рефакторинг на PowerShell с внешним CSV-конфигом и логированием в Event Log.
+      <span class="stack">PowerShell · VBS · Active Directory · GPO · WMI · ADSI · LDAP</span>
+    </li>
+    <li>
+      <strong><a href="https://github.com/VZ52/portfolio">portfolio</a></strong> —
+      сайт-визитка с авто-деплоем на GitHub Pages через GitHub Actions при каждом push в main.
+      <span class="stack">HTML · CSS · JS · GitHub Actions · GitHub Pages</span>
+    </li>
+  </ul>
+</section>
+
+<section>
+  <h2 class="section-title">Стек</h2>
+  <dl class="skills-grid">
+    <dt>Linux / Bash</dt>
+    <dd>Ubuntu Server, systemd, SSH, шелл-скрипты, troubleshooting</dd>
+    <dt>Контейнеризация</dt>
+    <dd>Docker, Docker Compose, volumes, networks, healthchecks</dd>
+    <dt>IaC / Ansible</dt>
+    <dd>playbooks, modules, group_vars, Jinja2, cloud-init</dd>
+    <dt>CI/CD</dt>
+    <dd>GitHub Actions, GitHub Pages, Git</dd>
+    <dt>Мониторинг</dt>
+    <dd>Zabbix 7 (server / agent / web / media types), Telegram Bot API</dd>
+    <dt>Языки и API</dt>
+    <dd>Python, Bash, PowerShell, REST API (curl, JSON), YAML</dd>
+    <dt>Windows-инфраструктура</dt>
+    <dd>Active Directory, Group Policy, Windows Server, WMI, ADSI, LDAP</dd>
+    <dt>Сети</dt>
+    <dd>MikroTik / Winbox, VLAN, маршрутизация</dd>
+  </dl>
+</section>
+
+<section>
+  <h2 class="section-title">Образование</h2>
+  <div class="exp-block">
+    <div class="exp-head">
+      <span class="title">Прикладная информатика · бакалавр (неоконченное)</span>
+      <span class="period">2 курс · оконч. 2029</span>
+    </div>
+    <p class="exp-meta">Очная форма обучения</p>
+  </div>
+</section>
+
+<section>
+  <h2 class="section-title">Языки</h2>
+  <p>Русский — родной · Английский — A1 (базовый, читаю техническую документацию со словарём)</p>
+</section>
+
+</body>
+</html>
