@@ -87,6 +87,23 @@
         </div>
       </button>
 
+      <button type="button" class="card" data-project="sysadmin-runbooks">
+        <h3>sysadmin-runbooks</h3>
+        <p class="card-desc">
+          Реальные production-инциденты с системным подходом: симптом →
+          PowerShell-runbook → корневая причина → план фикса. Кейсы из работы
+          с AD, GPO, КриптоПро, USB-over-IP, HASP/Sentinel.
+        </p>
+        <div class="tags">
+          <span>PowerShell</span>
+          <span>Windows</span>
+          <span>Active Directory</span>
+          <span>GPO</span>
+          <span>Kaspersky</span>
+          <span>Incident Response</span>
+        </div>
+      </button>
+
       <button type="button" class="card" data-project="ad-logon-tracker">
         <h3>ad-logon-tracker</h3>
         <p class="card-desc">
@@ -248,6 +265,21 @@
       ],
       stack: ['Ansible', 'Jinja2', 'Multipass', 'cloud-init', 'Ubuntu 26.04', 'YAML'],
       github: 'https://github.com/VZ52/zabbix-ansible'
+    },
+
+    'sysadmin-runbooks': {
+      title: 'sysadmin-runbooks',
+      desc: 'Сборник реальных production-инцидентов с системным подходом к диагностике: симптом → гипотезы → PowerShell-runbook → корневая причина → план фикса. Кейсы из практики работы сисадмином в сети из 33 клиник.',
+      features: [
+        'Runbook 01: «Не грузится ЛК ФНС» — диагностика связки КриптоПро + Chrome GPO ExtensionInstallBlocklist + Kaspersky Security Center',
+        'Runbook 02: «BSOD 0x3B на ПК программиста 1С» — корреляция событий Kernel-Power 41, анализ минидампа, конфликт HASP-драйверов 2020 года с USB-over-IP клиентом',
+        'diagnose-crypto-stack.ps1: один проход показывает CSP/токены/расширения/политики Chrome',
+        'diagnose-bsod.ps1: журналы событий + WHEA + минидампы + история shutdown за раз',
+        'parse-minidump.ps1: парсер .dmp без WinDbg, на чистом PowerShell',
+        'list-installed-changes.ps1: что менялось за N дней (HotFix/программы/драйверы)'
+      ],
+      stack: ['PowerShell', 'Windows Server', 'Active Directory', 'GPO', 'Kaspersky', 'KriptoPro', 'Event Log', 'Incident Response'],
+      github: 'https://github.com/VZ52/sysadmin-runbooks'
     },
 
     'ad-logon-tracker': {
