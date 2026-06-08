@@ -87,6 +87,38 @@
         </div>
       </button>
 
+      <button type="button" class="card" data-project="hh-job-watcher">
+        <h3>hh-job-watcher</h3>
+        <p class="card-desc">
+          AI-бот: каждые 30 минут ходит в HH.ru OAuth API, оценивает вакансии
+          через LLM (DeepSeek / GigaChat / OpenAI / Claude) по 5 измерениям,
+          подходящие → Telegram-уведомления с разбором.
+        </p>
+        <div class="tags">
+          <span>Python</span>
+          <span>OAuth2</span>
+          <span>HH API</span>
+          <span>LLM</span>
+          <span>Telegram Bot</span>
+          <span>SQLite</span>
+        </div>
+      </button>
+
+      <button type="button" class="card" data-project="job-search-toolkit">
+        <h3>job-search-toolkit</h3>
+        <p class="card-desc">
+          Claude Code фреймворк для откликов: /apply анализирует вакансию,
+          подгоняет CV+сопроводительное, второй агент критикует, на выходе PDF.
+          Адаптация международного opensource под HH.ru.
+        </p>
+        <div class="tags">
+          <span>Claude Code</span>
+          <span>Workflow Automation</span>
+          <span>HTML→PDF</span>
+          <span>Drafter-Reviewer</span>
+        </div>
+      </button>
+
       <button type="button" class="card" data-project="sysadmin-runbooks">
         <h3>sysadmin-runbooks</h3>
         <p class="card-desc">
@@ -265,6 +297,36 @@
       ],
       stack: ['Ansible', 'Jinja2', 'Multipass', 'cloud-init', 'Ubuntu 26.04', 'YAML'],
       github: 'https://github.com/VZ52/zabbix-ansible'
+    },
+
+    'hh-job-watcher': {
+      title: 'hh-job-watcher',
+      desc: 'AI-бот, который ищет за тебя работу. Каждые 30 минут проверяет новые вакансии на HH.ru, оценивает их через LLM по 5 измерениям (skills/experience/culture/career/practical), и шлёт в Telegram только те, что реально подходят — с разбором что совпадает и где gap.',
+      features: [
+        'OAuth2 Client Credentials Grant для HH API — токен живёт 30 дней, авто-refresh',
+        'Универсальный LLM-скоринг: DeepSeek (без VPN, дёшево), GigaChat (бесплатно из РФ), OpenAI, Claude',
+        'Telegram-уведомления с карточкой: score, совпадения, gap-навыки, прямая ссылка на HH',
+        'SQLite для seen-vacancies — без повторов',
+        'Конфиг через YAML (регионы, опыт, формат работы, threshold уведомлений)',
+        'Деплой через cron / systemd-timer / Docker — на любом хосте с Python 3.10+'
+      ],
+      stack: ['Python 3.11', 'httpx', 'OAuth2', 'OpenAI SDK', 'pydantic', 'SQLite', 'HH API', 'Telegram Bot API', 'YAML'],
+      github: 'https://github.com/VZ52/hh-job-watcher'
+    },
+
+    'job-search-toolkit': {
+      title: 'job-search-toolkit',
+      desc: 'Claude Code фреймворк для подготовки откликов: /apply анализирует вакансию, оценивает fit по 5 измерениям, подгоняет CV и сопроводительное письмо, запускает второй агент-ревьюер для критики, на выходе — готовые HTML и PDF в applications/<компания>/. Адаптация международного opensource (MadsLorentzen/ai-job-search) под HH.ru без LaTeX.',
+      features: [
+        'Drafter-Reviewer workflow: два прохода LLM с критикой и правками',
+        '/apply <текст вакансии> — полный pipeline за одну команду',
+        '/upskill — gap-анализ под конкретную вакансию + план обучения',
+        '/expand — обогащение профиля из публичных GitHub-репо',
+        'HTML→PDF через Chrome headless (тот же стек что в portfolio/cv.html)',
+        'Writing-style правила под русский рынок: без канцелярита, interview backtrack test, лимиты длины'
+      ],
+      stack: ['Claude Code', 'Markdown', 'HTML', 'CSS', 'Chrome Headless', 'Workflow Design'],
+      github: 'https://github.com/VZ52/job-search-toolkit'
     },
 
     'sysadmin-runbooks': {
