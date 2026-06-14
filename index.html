@@ -301,16 +301,18 @@
 
     'hh-job-watcher': {
       title: 'hh-job-watcher',
-      desc: 'AI-бот, который ищет за тебя работу. Каждые 30 минут проверяет новые вакансии на HH.ru, оценивает их через LLM по 5 измерениям (skills/experience/culture/career/practical), и шлёт в Telegram только те, что реально подходят — с разбором что совпадает и где gap.',
+      desc: 'Production-deployed AI-бот для поиска работы. Развёрнут на VPS (Timeweb / Ubuntu 22.04) с автозапуском через systemd. Каждые 30 минут ищет новые вакансии через HH OAuth API, оценивает через DeepSeek по 5 измерениям, релевантные шлёт в Telegram с inline-кнопками. По клику «✅ Откликнуться» бот за 10 секунд генерирует tailored сопроводительное письмо под эту вакансию и присылает готовое к копированию.',
       features: [
-        'OAuth2 Client Credentials Grant для HH API — токен живёт 30 дней, авто-refresh',
-        'Универсальный LLM-скоринг: DeepSeek (без VPN, дёшево), GigaChat (бесплатно из РФ), OpenAI, Claude',
-        'Telegram-уведомления с карточкой: score, совпадения, gap-навыки, прямая ссылка на HH',
-        'SQLite для seen-vacancies — без повторов',
-        'Конфиг через YAML (регионы, опыт, формат работы, threshold уведомлений)',
-        'Деплой через cron / systemd-timer / Docker — на любом хосте с Python 3.10+'
+        'OAuth 2.0 обоих типов: Client Credentials (поиск) + Authorization Code Grant с локальным callback-сервером (юзер-данные)',
+        'Production-deployment: cron для поиска + systemd-юнит для always-on listener с авторестартом',
+        'SOCKS5-прокси точечно для api.telegram.org (обход блокировки маршрута на российских VPS); HH и DeepSeek — напрямую',
+        'Inline-клавиатура в Telegram: ✅ Откликнуться / ❌ Пропустить / 🔗 Открыть на HH; long-polling listener реагирует за секунды',
+        'Tailored сопроводительные через DeepSeek — жёсткий промпт «production / pet / изучаю» без приукрашивания опыта',
+        'Универсальный LLM-слой: DeepSeek / GigaChat / OpenAI / Claude — переключается через ENV',
+        'SQLite для дедупликации (seen vacancies + tg_offset для long polling)',
+        'Конфиг через YAML + ENV, никаких хардкодов; .env и токены строго в .gitignore'
       ],
-      stack: ['Python 3.11', 'httpx', 'OAuth2', 'OpenAI SDK', 'pydantic', 'SQLite', 'HH API', 'Telegram Bot API', 'YAML'],
+      stack: ['Python 3.10+', 'httpx + SOCKS5', 'OAuth 2.0', 'OpenAI SDK', 'pydantic', 'SQLite', 'HH API', 'Telegram Bot API', 'systemd', 'cron', 'YAML'],
       github: 'https://github.com/VZ52/hh-job-watcher'
     },
 
