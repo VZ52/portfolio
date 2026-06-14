@@ -309,10 +309,11 @@
         'Inline-клавиатура в Telegram: ✅ Откликнуться / ❌ Пропустить / 🔗 Открыть на HH; long-polling listener реагирует за секунды',
         'Tailored сопроводительные через DeepSeek — жёсткий промпт «production / pet / изучаю» без приукрашивания опыта',
         'Универсальный LLM-слой: DeepSeek / GigaChat / OpenAI / Claude — переключается через ENV',
+        'Observability: Prometheus + Pushgateway (для cron-job) + Grafana с 9-панельным дашбордом. Метрики через prometheus_client, инструментированы Counter / Gauge / Histogram',
         'SQLite для дедупликации (seen vacancies + tg_offset для long polling)',
         'Конфиг через YAML + ENV, никаких хардкодов; .env и токены строго в .gitignore'
       ],
-      stack: ['Python 3.10+', 'httpx + SOCKS5', 'OAuth 2.0', 'OpenAI SDK', 'pydantic', 'SQLite', 'HH API', 'Telegram Bot API', 'systemd', 'cron', 'YAML'],
+      stack: ['Python 3.10+', 'httpx + SOCKS5', 'OAuth 2.0', 'OpenAI SDK', 'pydantic', 'SQLite', 'HH API', 'Telegram Bot API', 'systemd', 'cron', 'Prometheus', 'Grafana', 'Docker Compose', 'YAML'],
       github: 'https://github.com/VZ52/hh-job-watcher'
     },
 
