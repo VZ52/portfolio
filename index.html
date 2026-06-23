@@ -87,6 +87,22 @@
         </div>
       </button>
 
+      <button type="button" class="card" data-project="zabbix-network-map-ops">
+        <h3>zabbix-network-map-ops</h3>
+        <p class="card-desc">
+          Безопасная правка боевой сетевой карты Zabbix: бэкап через export,
+          разбор экспорта скриптом вместо «на глаз», пошаговые правки с
+          верификацией, link-индикаторы для локализации обрывов оптики.
+        </p>
+        <div class="tags">
+          <span>Zabbix</span>
+          <span>Bash</span>
+          <span>Perl</span>
+          <span>Network Monitoring</span>
+          <span>Runbook</span>
+        </div>
+      </button>
+
       <button type="button" class="card" data-project="hh-job-watcher">
         <h3>hh-job-watcher</h3>
         <p class="card-desc">
@@ -297,6 +313,21 @@
       ],
       stack: ['Ansible', 'Jinja2', 'Multipass', 'cloud-init', 'Ubuntu 26.04', 'YAML'],
       github: 'https://github.com/VZ52/zabbix-ansible'
+    },
+
+    'zabbix-network-map-ops': {
+      title: 'zabbix-network-map-ops',
+      desc: 'Реальная задача с работы: перенастроить оптические аплинки на магистральной сетевой карте Zabbix (~190 элементов) без простоев и без правок вслепую. Главное в кейсе — инженерный процесс: бэкап до правок, достоверная топология из данных, проверка каждого шага, диагностика обрывов до конкретного порта.',
+      features: [
+        'Backup-first: Export карты перед любой правкой = точка отката через Import',
+        'parse-map-links.sh: разбор XML-экспорта (Perl) — сопоставляет selementid→label и печатает все связи по именам + привязанные триггеры',
+        'Разбор выявил, что узлы из устной постановки отсутствуют на открытой карте → правки не начали, нашли правильную карту (избежали тихой поломки боевого мониторинга)',
+        'Пошаговые идемпотентные правки с проверкой таблицы Links после каждой операции',
+        'Link-индикаторы (триггеры Interface etherX: Link down) → линия на карте краснеет ровно на упавшем сегменте (порт 3 / порт 4)',
+        'Финальная верификация: повторный Export + разбор тем же скриптом, сверка с целевым состоянием'
+      ],
+      stack: ['Zabbix 6.0', 'Bash', 'Perl', 'XML', 'Network Monitoring', 'SNMP', 'Runbook'],
+      github: 'https://github.com/VZ52/zabbix-network-map-ops'
     },
 
     'hh-job-watcher': {
